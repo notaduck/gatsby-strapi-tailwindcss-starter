@@ -1,0 +1,1 @@
+# gatsby-strapi-tailwindcss-starter
