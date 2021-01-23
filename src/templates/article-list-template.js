@@ -12,17 +12,19 @@ const ArticleList = ({ data, pageContext }) => {
   const prevPage = ( currentPage - 1 === 1 ) ? "/articles" : (currentPage - 1).toString();
   const nextPage = (currentPage + 1).toString();
   const {
-    allStrapiArticle: { edges },
+    allStrapiArticles: { nodes },
   } = data;
+
+  console.log(nodes)
 
   return (
     <Layout>
-        <SEO/>
-      {edges.map(a => {
-        const { text: time } = readingTime(a.node.content);
+        <SEO title='articles' />
+      {nodes.map(node => {
+        const { text: time } = readingTime(node.content);
         return (
           <div
-            key={a.node.id}
+            key={node.id}
             className="flex 
                                                     xs:flex-col-reverse
                                                     md:flex-row
@@ -38,7 +40,7 @@ const ArticleList = ({ data, pageContext }) => {
               <div className="">
                 <div className="flex space-x-2 items-center m-0">
                   <FiCalendar />
-                  <p className="m-0"> {a.node.published_at} </p>
+                  <p className="m-0"> {node.published_at} </p>
                 </div>
                 <div className="flex space-x-2 items-center m-0">
                   <FiCoffee />
@@ -49,12 +51,12 @@ const ArticleList = ({ data, pageContext }) => {
             {/* Title and description */}
             <div className="xs:flex-1 flex-col ">
               <div className="flex items-center">
-                <h3> {a.node.title} </h3>
+                <h3> {node.title} </h3>
               </div>
-              <p> {a.node.desc} </p>
+              <p> {node.description} </p>
               <Link
                 className="hover:underline"
-                to={`/article/${a.node.title.toLowerCase()}`}
+                to={`/article/${node.title.replace(/\s+/g, '-').toLowerCase()}`}
               >
                 {" "}
                 Read More{" "}
@@ -82,19 +84,16 @@ const ArticleList = ({ data, pageContext }) => {
 
 export const query = graphql`
   query articleList($skip: Int!, $limit: Int!) {
-    allStrapiArticle(
-      sort: { fields: created_at, order: DESC }
+    allStrapiArticles(
+      sort: { fields: createdAt, order: DESC }
       limit: $limit
       skip: $skip
     ) {
-      edges {
-        node {
-          id
-          desc
-          title
-          content
-          published_at(formatString: "MMMM DD - YYYY")
-        }
+      nodes {
+        content
+        published_at(formatString: "MMMM DD - YYYY")
+        title
+        description
       }
     }
   }

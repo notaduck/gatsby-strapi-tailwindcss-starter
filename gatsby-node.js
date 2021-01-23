@@ -8,23 +8,15 @@
 
 const path = require("path");
 exports.createPages = async ({ graphql, actions }) => {
-  // const { createRedirect } = actions
-
-  // createRedirect({
-  //     fromPath: `/`,
-  //     toPath: `/articles`,
-  //     redirectInBrowser: true,
-  //     isPermanent: true,
-  //   })
 
   const { createPage } = actions;
   const result = await graphql(`
     {
-      articles: allStrapiArticle {
+      articles: allStrapiArticles {
         nodes {
           title
           content
-          created_at(formatString: "MMMM dddd yyyy")
+          createdAt(formatString: "MMMM dddd yyyy")
         }
       }
     }
@@ -34,7 +26,6 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
-  // Create blog articles pages.
   const articles = result.data.articles.nodes;
   const articlePerPage = 5;
 
@@ -57,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   articles.forEach((article, index) => {
     createPage({
-      path: `/article/${article.title.toLowerCase()}`,
+      path: `/article/${article.title.replace(/\s+/g, '-').toLowerCase()}`,
       component: ArticleTemplate,
       context: {
         title: article.title,

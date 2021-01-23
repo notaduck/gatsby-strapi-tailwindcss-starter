@@ -2,6 +2,8 @@ require("dotenv").config({
   path: `.env`,
 });
 
+console.log('-------> ',process.env.API_URL)
+
 module.exports = {
   siteMetadata: {
     title: `Guldberglab`,
@@ -35,36 +37,13 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: process.env.API_URL || "http://localhost:1337",
-        contentTypes: ["article"],
-        singleTypes: ['about-page'],
+        // apiURL: process.env.API_URL,
+        apiURL: "http://localhost:1337",
+        contentTypes: ["articles"],
+        singleTypes: ['about'],
         queryLimit: 1000,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
-
-    //   options: {
-    //     fonts: [
-    //       {
-    //         family: `Roboto Mono`,
-    //         variants: [`400`, `700`]
-    //       },
-    //       {
-    //         family: `Roboto`,
-    //         subsets: [`latin`]
-    //       },
-    //       {
-    //         family: 'Eczar',
-    //         variants: ['400', '500']
-    //       },
-    //       {
-    //         family: 'Merriweather',
-    //         variants: ['300']
-    //       }
-    //     ],
-    //   },
-    // },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

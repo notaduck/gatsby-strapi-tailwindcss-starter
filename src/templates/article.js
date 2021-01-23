@@ -7,7 +7,7 @@ import SEO from "../components/seo";
 
 export const query = graphql`
   query Article($title: String!) {
-    strapiArticle(title: { eq: $title }) {
+    strapiArticles(title: { eq: $title }) {
       title
       content
     }
@@ -15,7 +15,7 @@ export const query = graphql`
 `;
 
 const Category = ({ data }) => {
-  const article = data.strapiArticle;
+  const article = data.strapiArticles;
 
   return (
     <Layout>

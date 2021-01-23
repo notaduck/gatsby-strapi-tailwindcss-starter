@@ -12,6 +12,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 import "./layout.css";
 import NavBar from "./Nav/navbar";
+import Footer from "./footer";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,23 +28,21 @@ const Layout = ({ children }) => {
   return (
     <>
       <div
-        className=" dark dark:bg-gray-700
+        className="   
                       flex 
                       flex-col  
+                      h-screen
                       sm:pl-20 sm:pr-20
                       lg:pl-30 lg:pr-30
                       xl:pl-60 xl:pr-60
                       pt-10
-                    bg-gray-light"
+                    bg-gray-light
+                      "
       >
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <NavBar />
-        <main className="mt-10 min-h-screen ">{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
+        <main className="mt-10 flex-1">{children}</main>
+        <Footer/>
       </div>
     </>
   );
