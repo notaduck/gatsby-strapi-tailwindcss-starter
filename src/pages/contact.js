@@ -5,8 +5,7 @@ import SEO from "../components/seo";
 import { useForm } from "react-hook-form";
 
 const Contact = ({ location }) => {
-  const [register, watch, errors] = useForm();
-  console.log("...", location);
+  const { register, watch, errors } = useForm();
 
   const encode = data => {
     return Object.keys(data)
