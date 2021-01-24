@@ -49,16 +49,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-strapi",
-      options: {
-        // apiURL: process.env.API_URL,
-        apiURL: "http://localhost:1337",
-        contentTypes: ["articles"],
-        singleTypes: ['about'],
-        queryLimit: 1000,
-      },
-    },
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         // CommonMark mode (default: true)
