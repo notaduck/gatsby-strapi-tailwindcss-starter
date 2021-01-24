@@ -7,26 +7,44 @@
 // You can delete this file if you're not using it
 
 const path = require("path");
-exports.createPages = async ({ graphql, actions }) => {
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === `Mdx`) {
+    const value = createFilePath({ node, getNode });
+
+    createNodeField({
+      name: `slug`,
+      node,
+      value: `/articles${value}`,
+    });
+  }
+};
+
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const result = await graphql(`
-    {
-      articles: allStrapiArticles {
-        nodes {
-          title
-          content
-          createdAt(formatString: "MMMM dddd yyyy")
+        query {
+            allMdx {
+                edges {
+                    node {
+                        id
+                        fields {
+                            slug
+                        }
+                    }
+                }
+            }
         }
-      }
-    }
   `);
 
   if (result.errors) {
     throw result.errors;
   }
 
-  const articles = result.data.articles.nodes;
+  const articles = result.data.allMdx.edges;
   const articlePerPage = 5;
 
   const numPages = Math.ceil(articles.length / articlePerPage);
@@ -44,15 +62,11 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const ArticleTemplate = require.resolve("./src/templates/article.js");
-
-  articles.forEach((article, index) => {
+  articles.forEach(({ node }, index) => {
     createPage({
-      path: `/article/${article.title.replace(/\s+/g, '-').toLowerCase()}`,
-      component: ArticleTemplate,
-      context: {
-        title: article.title,
-      },
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/article-template.js`),
+      context: { id: node.id },
     });
   });
 };

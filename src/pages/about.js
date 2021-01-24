@@ -1,47 +1,51 @@
 import React from "react";
-import { graphql } from "gatsby"
-import Img from 'gatsby-image'
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
 import Layout from "../components/layout";
-import ReactMarkdown from "react-markdown";
-
 
 const About = ({ data }) => {
 
-  const { strapiAbout: about  } = data
+  const { site : { siteMetadata : { name, profession }}} = data
+  const { file : { childImageSharp : { fluid : picture }}} = data
 
   return (
     <Layout>
-      <div className='xs:pl-4 xs:pr-4'>
-        <div className='flex xs:flex-col md:flex-row justify-evenly mb-6'>
-          <Img className='rounded-full h-36 w-36 flex items-center justify-center' fluid={about.picture.childImageSharp.fluid} />
-          <div className='flex flex-col items-center align-center xs:pt-6 md:pt-0'>
-            <h2> Hi, my name is {about.name}.  </h2>
-            <h3> I am a {about.profession}</h3>
-          </div>
+      <div className="xs:px-10">
+        <div className="flex xs:flex-col md:flex-row justify-evenly mb-6">
+          <Img
+            className="rounded-full h-36 w-36 flex items-center justify-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+            fluid={picture}
+          />
+          <div className="flex flex-col items-center align-center xs:pt-6 md:pt-0">
+            <h2> Hi, my name is {name}. </h2>
+            <h3> I am a {profession}</h3>
+          </div> 
         </div>
-        <ReactMarkdown source={about.content} escapeHtml={true} />
+        <section>
+          <p> I am currently emplyed at </p>
+        </section>
       </div>
     </Layout>
   );
 };
 
 export const query = graphql`
-  
   {
-    strapiAbout {
+    site {
+      siteMetadata {
         name
         profession 
-        content 
-        picture {
-          childImageSharp {
-          fluid(grayscale: true) {
-            ...GatsbyImageSharpFluid
-          }
-          }
+      }
+    }
+    file(name: { regex: "/me/" }) {
+      id
+      childImageSharp {
+        fluid(grayscale: true) {
+          ...GatsbyImageSharpFluid
         }
       }
+    }
   }
-  
-`
+`;
 
 export default About;

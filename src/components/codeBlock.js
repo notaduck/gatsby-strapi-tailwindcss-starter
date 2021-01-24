@@ -1,13 +1,33 @@
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import theme from "react-syntax-highlighter/dist/esm/styles/prism/material-dark";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/palenight";
 
-const CodeBlock = ({ language, value }) => {
+export default props => {
+  const className = props.children.props.className || "";
+  const matches = className.match(/language-(?<lang>.*)/);
+
   return (
-    <SyntaxHighlighter language={language} style={theme}>
-      {value}
-    </SyntaxHighlighter>
+    <Highlight
+      {...defaultProps}
+      code={props.children.props.children.trim()}
+      language={
+        matches && matches.groups && matches.groups.lang
+          ? matches.groups.lang
+          : ""
+      }
+      theme={theme}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <pre className={className} style={{ ...style, padding: "20px" }}>
+          {tokens.map((line, i) => (
+            <div key={i} {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token, key })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
   );
 };
-
-export default CodeBlock;

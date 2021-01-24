@@ -15,23 +15,16 @@ import NavBar from "./Nav/navbar";
 import Footer from "./footer";
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  const data = useStaticQuery(query);
 
   return (
     <>
       <div
-        className="   
+        className=" 
                       flex 
                       flex-col  
                       h-screen
+                      overflow-scroll
                       sm:pl-20 sm:pr-20
                       lg:pl-30 lg:pr-30
                       xl:pl-60 xl:pr-60
@@ -42,11 +35,21 @@ const Layout = ({ children }) => {
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <NavBar />
         <main className="mt-10 flex-1">{children}</main>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
 };
+
+export const query = graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

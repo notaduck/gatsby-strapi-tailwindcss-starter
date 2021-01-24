@@ -2,16 +2,30 @@ require("dotenv").config({
   path: `.env`,
 });
 
-console.log('-------> ',process.env.API_URL)
-
 module.exports = {
   siteMetadata: {
     title: `Guldberglab`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `@notaduck`,
+    name: 'Danie Guldberg Aaes',
+    profession: 'Student Software Developer'
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+
+{
+            resolve: `gatsby-plugin-mdx`,
+            options: {
+                extensions: [`.mdx`, `.md`],
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `articles`,
+                path: `${__dirname}/src/articles`,
+            },
+        },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -38,7 +52,7 @@ module.exports = {
       resolve: "gatsby-source-strapi",
       options: {
         // apiURL: process.env.API_URL,
-        apiURL: process.env.API_URL || "http://localhost:1337",
+        apiURL: "http://localhost:1337",
         contentTypes: ["articles"],
         singleTypes: ['about'],
         queryLimit: 1000,
