@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import SEO from '../components/seo'
 import Layout from "../components/layout";
 
 const About = ({ data }) => {
@@ -10,6 +11,7 @@ const About = ({ data }) => {
 
   return (
     <Layout>
+      <SEO title="About" />
       <div className="xs:px-10">
         <div className="flex xs:flex-col md:flex-row justify-evenly mb-6">
           <Img

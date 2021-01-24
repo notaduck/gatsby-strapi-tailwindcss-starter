@@ -1,9 +1,33 @@
 import React from "react";
+import { navigate } from "gatsby";
 import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { useForm } from "react-hook-form";
 
-const Contact = () => {
+const Contact = ({ location }) => {
+  const [register, watch, errors] = useForm();
+  console.log("...", location);
+
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    fetch(location.pathname, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: register.data,
+    })
+      .then(() => navigate("/thank-you/"))
+      .catch(error => alert(error));
+  };
+
   return (
     <Layout>
+      <SEO title="Contact" />
       <form
         className="xs:px-10 mx-auto w-full h-full "
         name="Contact Form"
@@ -11,44 +35,53 @@ const Contact = () => {
         data-netlify="true"
         action="/thank-you"
       >
-        <input type="hidden" name="form-name" value="Contact Form" />
+        <input
+          type="hidden"
+          name="form-name"
+          value="Contact Form"
+          ref={register}
+        />
 
         <div className="flex xs:flex-col sm:flex-row w-full">
           <div className="space-y-2 md:w-1/2 xs:w-full sm:mr-2">
-            <label className='xs:hidden md:visible' >First name</label>
+            <label className="xs:hidden md:visible">First name</label>
             <input
-              className=" block bg-gray-light hover:bg-gray-50 rounded w-full border-gray-600 border-2"
-              placeholder='First name'
+              className="focus:underline block bg-gray-light  rounded w-full border-gray-600 border-2"
+              placeholder="First name"
               type="text"
               name="first_name"
+              ref={register}
             />
           </div>
 
           <div className="space-y-2 md:w-1/2 xs:w-full">
-            <label className='xs:hidden md:visible' >Last name</label>
+            <label className="xs:hidden md:visible">Last name</label>
             <input
-              className=" block bg-gray-light hover:bg-gray-50 rounded w-full border-gray-600 border-2"
-              placeholder='Last name'
+              className=" focus:underline block bg-gray-light rounded w-full border-gray-600 border-2"
+              placeholder="Last name"
               type="text"
-              name="first_name"
+              name="last_name"
+              ref={register}
             />
           </div>
         </div>
         <div className="space-y-2">
-          <label className='xs:hidden md:visible' >Your Email</label>
+          <label className="xs:hidden md:visible">Your Email</label>
           <input
-            className=" block bg-gray-light hover:bg-gray-50 rounded w-full border-gray-600 border-2"
-            placeholder='Email'
+            className=" focus:underline block bg-gray-light  rounded w-full border-gray-600 border-2"
+            placeholder="Email"
             type="email"
             name="email"
+            ref={register}
           />
         </div>
         <div className="space-y-2">
-          <label className='xs:hidden md:visible'>Message</label>
+          <label className="xs:hidden md:visible">Message</label>
           <textarea
-            className=" block bg-gray-light hover:bg-gray-50 rounded w-full h-28 border-gray-600 border-2"
+            className=" focus:underline block bg-gray-light  rounded w-full h-28 border-gray-600 border-2"
             name="message"
-            placeholder='Enter message'
+            placeholder="Enter message"
+            ref={register}
           />
         </div>
         <button
