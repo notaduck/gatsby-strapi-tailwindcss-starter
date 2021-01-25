@@ -29,8 +29,8 @@ const ArticleTemplate = ({ data }) => {
         </MDXProvider>
       </div>
 
-      <div className="flex justify-center mt-10 mb-10">
-        <Link to="/" className="p-3  cursor-pointer border-gray-600 border-2">
+      <div className="flex justify-center mt-10 mb-10 ">
+        <Link to="/" className="p-3  cursor-pointer border-gray-600 border-2 rounded">
           {" "}
           GO BACK{" "}
         </Link>

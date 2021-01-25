@@ -11,6 +11,7 @@
     "autoprefixer": "^10.2.3",
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.5.0",
+    "gatsby-plugin-dark-mode": "^1.1.2",
     "gatsby-plugin-manifest": "^2.6.1",
     "gatsby-plugin-mdx": "^1.9.0",
     "gatsby-plugin-offline": "^3.4.0",
@@ -32,6 +33,7 @@
     "react-markdown": "^5.0.3",
     "react-syntax-highlighter": "^15.4.3",
     "react-text-truncate": "^0.16.0",
+    "react-toggle": "^4.1.1",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
@@ -43,6 +45,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "build:css": "tailwind build src/styles/global.css -o    static/styles/tailwind.css",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",

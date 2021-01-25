@@ -17,7 +17,7 @@ const ArticleList = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title="articles" />
+      <SEO title="Articles" />
       {nodes.map((node, index) => {
         return (
           <div
@@ -83,6 +83,7 @@ export const query = graphql`
       skip: $skip
     ) {
       nodes {
+        id
         excerpt(truncate: true, pruneLength: 300)
         timeToRead
         fields {

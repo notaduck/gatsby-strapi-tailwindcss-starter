@@ -9,7 +9,11 @@ module.exports = {
         "blue-primary": "#1e81b0",
         "blue-secondary": "#063970",
         leather: "#9d7463",
-        "leather-light": "#af8171",
+        leatherlight: "#af8171",
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        maintext: 'var(--text-main)',
+        secondarytext: 'var(--text-secondary)',
       },
     },
     screens: {

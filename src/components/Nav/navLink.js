@@ -10,7 +10,7 @@ const NavLink = ({ path, title }) => (
                    m:text-base 
                    font-medium 
                    px-px  
-                   text-gray-700
+                   text-main
                    hover:underline
                    transition 
                    duration-150 

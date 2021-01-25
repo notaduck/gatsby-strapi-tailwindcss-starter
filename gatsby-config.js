@@ -7,25 +7,25 @@ module.exports = {
     title: `Guldberglab`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@notaduck`,
-    name: 'Danie Guldberg Aaes',
-    profession: 'Student Software Developer'
+    name: "Danie Guldberg Aaes",
+    profession: "Student Software Developer",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
 
-{
-            resolve: `gatsby-plugin-mdx`,
-            options: {
-                extensions: [`.mdx`, `.md`],
-            },
-        },
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `articles`,
-                path: `${__dirname}/src/articles`,
-            },
-        },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `articles`,
+        path: `${__dirname}/src/articles`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -36,6 +36,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     "gatsby-plugin-postcss",
+    "gatsby-plugin-dark-mode",
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
