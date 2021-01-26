@@ -9,6 +9,7 @@ module.exports = {
     author: `@notaduck`,
     name: "Danie Guldberg Aaes",
     profession: "Student Software Developer",
+    siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -37,6 +38,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     "gatsby-plugin-postcss",
     "gatsby-plugin-dark-mode",
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
