@@ -12,7 +12,8 @@ import ThemeToggle from "./themeToggle";
 
 import Header from "./header";
 import "./layout.css";
-import "../../static/styles/tailwind.css";
+// import "../../static/styles/tailwind.css";
+import "../styles/global.css";
 import NavBar from "./Nav/navbar";
 import Footer from "./footer";
 
@@ -37,7 +38,7 @@ const Layout = ({ children }) => {
                     dark:text-gray-300
                     "
       >
-        <ThemeToggle className="" />
+        {/* <ThemeToggle className="" /> */}
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <NavBar />
         <main className="mt-10 flex-1">{children}</main>
