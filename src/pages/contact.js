@@ -5,7 +5,8 @@ import SEO from "../components/seo";
 import { useForm } from "react-hook-form";
 
 const Contact = ({ location }) => {
-  const { register, watch, errors } = useForm();
+  const [register, watch, errors] = useForm();
+  console.log("...", location);
 
   const encode = data => {
     return Object.keys(data)
@@ -28,7 +29,7 @@ const Contact = ({ location }) => {
     <Layout>
       <SEO title="Contact" />
       <form
-        className="xs:px-10 mx-auto w-full h-full "
+        className="xs:px-10 xl:px-72 xl:py-32 mx-auto w-full h-full "
         name="Contact Form"
         method="POST"
         data-netlify="true"
