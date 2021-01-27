@@ -1,23 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 * {
  font-size: 100%;
  font-family: 'Merriweather', serif;
 }
 
-.theme-light {
+/* :root {
+  @apply .light-mode;
+} */
+
+.light-mode {
   --primary: #f3f3f3;
   --secondary: #dbe1e8;
   --text-main: #0d0106;
   --text-secondary: #454e56;
   --accent: #009ffd;
-}.theme-dark {
+}.dark-mode {
   --primary: #2c2c2c;
   --secondary: #2a2e35;
   --text-main: #dbdbdb;
   --text-secondary: #b8b8b9;
   --accent: #fc7753;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react";
+import React, { useContext} from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import { useRecoilState } from "recoil";
@@ -19,26 +19,30 @@ import ThemeToggle from "./themeToggle/themeToggle";
 import { themeState } from "./themeToggle/themeState";
 import useIsClient from "../hooks/useIsClient";
 
+import { ThemeContext } from '../context/themeContext'
+
 const Layout = ({ children }) => {
 
   const data = useStaticQuery(query);
 
-  const [theme] = useRecoilState(themeState);
+  const { theme, setTheme } = useContext(ThemeContext);
+  // const [theme] = useRecoilState(themeState);
 
-  const isClient = useIsClient();
+  // const isClient = useIsClient();
 
-  if ( !isClient ) return null;
+  // if ( !isClient ) return null;
 
   return (
     <>
       <div
-        className={` ${theme === 'light' ? 'theme-light' : 'theme-dark'}
+        // className={` ${theme === 'light' ? 'theme-light' : 'theme-dark'}
+        className={`
                     transition-all 
                     duration-300
                     flex 
                     flex-col  
-                    h-screen
-                    overflow-y-scroll
+                    min-h-screen
+                    overflow-y-visible
                     sm:pl-20 sm:pr-20
                     lg:pl-30 lg:pr-30
                     xl:pl-60 xl:pr-60
