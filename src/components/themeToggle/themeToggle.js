@@ -1,8 +1,5 @@
-import React, { useContext, useEffect} from "react";
+import React from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
-// import { useRecoilState } from "recoil";
-// import { themeState } from "./themeState";
-import { ThemeContext } from '../../context/themeContext'
 import useDarkMode from 'use-dark-mode';
 const ThemeToggle = () => {
 
