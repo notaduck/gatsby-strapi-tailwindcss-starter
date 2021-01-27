@@ -8,7 +8,7 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@notaduck`,
     name: "Danie Guldberg Aaes",
-    profession: "Student Software Developer",
+    profession: "Software Developer",
     siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
   },
   plugins: [
@@ -37,7 +37,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     "gatsby-plugin-postcss",
-    "gatsby-plugin-dark-mode",
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,

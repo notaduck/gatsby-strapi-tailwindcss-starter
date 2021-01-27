@@ -34,6 +34,8 @@
     "react-syntax-highlighter": "^15.4.3",
     "react-text-truncate": "^0.16.0",
     "react-toggle": "^4.1.1",
+    "recoil": "^0.1.2",
+    "recoil-persist": "^1.2.0",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {

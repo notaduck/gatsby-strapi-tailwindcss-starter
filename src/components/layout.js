@@ -8,37 +8,48 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
-import ThemeToggle from "./themeToggle";
+import { useRecoilState } from "recoil";
 
 import Header from "./header";
 import "./layout.css";
-// import "../../static/styles/tailwind.css";
 import "../styles/global.css";
 import NavBar from "./Nav/navbar";
 import Footer from "./footer";
+import ThemeToggle from "./themeToggle/themeToggle";
+import { themeState } from "./themeToggle/themeState";
+import useIsClient from "../hooks/useIsClient";
 
 const Layout = ({ children }) => {
+
   const data = useStaticQuery(query);
+
+  const [theme] = useRecoilState(themeState);
+
+  const isClient = useIsClient();
+
+  if ( !isClient ) return null;
 
   return (
     <>
       <div
-        className=" transition-all duration-300
+        className={` ${theme === 'light' ? 'theme-light' : 'theme-dark'}
+                    transition-all 
+                    duration-300
                     flex 
                     flex-col  
                     h-screen
-                    overflow-scroll
+                    overflow-y-scroll
                     sm:pl-20 sm:pr-20
                     lg:pl-30 lg:pr-30
                     xl:pl-60 xl:pr-60
                     pt-10
-                    bg-gray-light
-                    text-gray-600
-                    dark:bg-gray-800 
-                    dark:text-gray-300
-                    "
+                    bg-primary
+                    text-main-text
+        
+        `}
       >
-        {/* <ThemeToggle className="" /> */}
+
+        <ThemeToggle />
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <NavBar />
         <main className="mt-10 flex-1">{children}</main>

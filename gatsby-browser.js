@@ -1,10 +1,21 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
+import React from 'react'
+import { RecoilRoot } from "recoil";
+import { recoilPersist } from 'recoil-persist'
 
-// You can delete this file if you're not using it
+const { RecoilPersist, updateState } = recoilPersist(
+    ['theme'], // configurate that atoms will be stored (if empty then all atoms will be stored),
+    {
+        key: 'recoil-persist', // this key is using to store data in local storage
+        storage: localStorage // configurate which stroage will be used to store the data
+    }
+)
 
-import "./src/styles/global.css";
-import "./static/styles/tailwind.css"
+export const wrapPageElement = ({element, props}) => {
+    return(
+        <RecoilRoot  initializeState={({set}) => updateState({set})}>
+            <RecoilPersist />
+            
+            {element}
+        </RecoilRoot>
+    )
+}

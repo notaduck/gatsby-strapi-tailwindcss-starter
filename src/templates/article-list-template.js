@@ -24,12 +24,12 @@ const ArticleList = ({ data, pageContext }) => {
             key={node.id}
             className={`flex 
                         xs:flex-col-reverse
-                        md:flex-row
+                        sm:flex-row
                         ${index + 1 !== nodes.length ? "border-b-2" : ""}  
                         space-x-14 
                         mb-12 
                         p-4 
-                        :pl-8 md:pr-8 
+                        md:pl-8 md:pr-8 
                         lg:pr-4 lg:pl-4 `}
           >
             {/* Published and time to read  */}

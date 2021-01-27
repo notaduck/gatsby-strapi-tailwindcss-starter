@@ -22,15 +22,20 @@ const ArticleTemplate = ({ data }) => {
     <Layout>
       <SEO description={excerpt} title={title} />
       <div className="xs:px-10 lg:px-10">
-        <h1>{title}</h1>
-        <p>{date}</p>
+        <div className="mb-6">
+          <h1 className="text-2xl">{title}</h1>
+          <p>{date}</p>
+        </div>
         <MDXProvider components={components}>
           <MDXRenderer>{body}</MDXRenderer>
         </MDXProvider>
       </div>
 
       <div className="flex justify-center mt-10 mb-10 ">
-        <Link to="/" className="p-3  cursor-pointer border-gray-600 border-2 rounded">
+        <Link
+          to="/articles"
+          className="p-3  cursor-pointer border-gray-600 border-2 rounded"
+        >
           {" "}
           GO BACK{" "}
         </Link>
