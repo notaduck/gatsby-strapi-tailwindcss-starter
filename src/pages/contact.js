@@ -22,7 +22,7 @@ const Contact = ({ location }) => {
     <Layout>
       <SEO title="Contact" />
       <form
-        className="xs:px-10 xl:px-72 xl:py-32 mx-auto w-full h-full "
+        className="xs:px-10 xl:px-44 xl:py-24 mx-auto w-full h-full "
         name="Contact Form"
         method="POST"
         data-netlify="true"
